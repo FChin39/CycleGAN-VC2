@@ -470,11 +470,11 @@ if __name__ == '__main__':
     # resume_training_at = './model_checkpoint/_CycleGAN_CheckPoint'
     resume_training_at = None
 
-    validation_A_dir_default = './data/S0913/'
-    output_A_dir_default = './converted_sound/S0913'
+    validation_A_dir_default = './data/clean/'
+    output_A_dir_default = './converted_sound/clean'
 
-    validation_B_dir_default = './data/gaoxiaosong/'
-    output_B_dir_default = './converted_sound/gaoxiaosong/'
+    validation_B_dir_default = './data/noise/'
+    output_B_dir_default = './converted_sound/noise/'
 
     parser.add_argument('--logf0s_normalization', type=str,
                         help="Cached location for log f0s normalized", default=logf0s_normalization_default)
