@@ -1,5 +1,7 @@
 import random
 from pydub import AudioSegment
+import subprocess
+
 
 def random_audio_clip(input_file, output_file, min_length=3000, max_length=5000):
     """
@@ -34,5 +36,18 @@ def random_audio_clip(input_file, output_file, min_length=3000, max_length=5000)
     print(f"save {output_file}")
 
 
+noise_path = "data/origin_noise/2.wav"
+
+command = [
+        'ffmpeg',
+        '-y',
+        '-i', noise_path,
+        '-ar', str(8000), 
+        '-filter:a', f'atempo={1.0}',
+        noise_path[:-4] + '8000.wav',
+        '-loglevel', 'quiet',
+    ]
+subprocess.run(command)
+
 for i in range(200):
-    random_audio_clip("data/origin_noise/2.wav", f"data/noise/noise_{i}.wav")
+    random_audio_clip(noise_path[:-4] + '8000.wav', f"data/noise/noise_{i}.wav")
