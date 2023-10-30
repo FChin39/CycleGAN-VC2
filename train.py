@@ -308,7 +308,7 @@ class CycleGANTraining(object):
 
     def validation_for_A_dir(self):
         num_mcep = 36
-        sampling_rate = 16000
+        sampling_rate = 8000
         frame_period = 5.0
         n_frames = 128
         validation_A_dir = self.validation_A_dir
@@ -361,7 +361,7 @@ class CycleGANTraining(object):
 
     def validation_for_B_dir(self):
         num_mcep = 36
-        sampling_rate = 16000
+        sampling_rate = 8000
         frame_period = 5.0
         n_frames = 128
         validation_B_dir = self.validation_B_dir
@@ -467,8 +467,8 @@ if __name__ == '__main__':
     coded_sps_A_norm = './cache/coded_sps_A_norm.pickle'
     coded_sps_B_norm = './cache/coded_sps_B_norm.pickle'
     model_checkpoint = './model_checkpoint/'
-    resume_training_at = './model_checkpoint/_CycleGAN_CheckPoint'
-    #     resume_training_at = None
+    # resume_training_at = './model_checkpoint/_CycleGAN_CheckPoint'
+    resume_training_at = None
 
     validation_A_dir_default = './data/S0913/'
     output_A_dir_default = './converted_sound/S0913'

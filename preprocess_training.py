@@ -86,8 +86,8 @@ def preprocess_for_training(train_A_dir, train_B_dir, cache_folder):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
         description='Prepare data for training Cycle GAN using PyTorch')
-    train_A_dir_default = './data/S0913/'
-    train_B_dir_default = './data/gaoxiaosong/'
+    train_A_dir_default = './data/clean/'
+    train_B_dir_default = './data/noise/'
     cache_folder_default = './cache/'
 
     parser.add_argument('--train_A_dir', type=str,
