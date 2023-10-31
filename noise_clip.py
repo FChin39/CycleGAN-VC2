@@ -36,7 +36,7 @@ def random_audio_clip(input_file, output_file, min_length=3000, max_length=5000)
     print(f"save {output_file}")
 
 
-noise_path = "data/origin_noise/2.wav"
+noise_path = "data/origin_noise/3.wav"
 
 command = [
         'ffmpeg',
