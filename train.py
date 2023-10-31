@@ -14,7 +14,9 @@ import pickle
 import preprocess
 from trainingDataset import trainingDataset
 from model_tf import Generator, Discriminator
-from tqdm import tqdm   
+from tqdm import tqdm
+import soundfile as sf
+
 
 os.environ["CUDA_VISIBLE_DEVICES"] = "3"
 
@@ -280,7 +282,7 @@ class CycleGANTraining(object):
             #             print("Epoch: {} Generator Loss: {:.4f} Discriminator Loss: {}, Time: {:.2f}\n\n".format(
             #                 epoch, generator_loss.item(), d_loss.item(), end_time - start_time_epoch))
 
-            if epoch % 20 == 0 and epoch != 0:
+            if epoch % 10 == 0 and epoch != 0:
                 end_time = time.time()
                 store_to_file = "Epoch: {} Generator Loss: {:.4f} Discriminator Loss: {}, Time: {:.2f}\n\n".format(
                     epoch, generator_loss.item(), d_loss.item(), end_time - start_time_epoch)
@@ -296,7 +298,7 @@ class CycleGANTraining(object):
                     self.modelCheckpoint + '_CycleGAN_CheckPoint'))
                 print("Model Saved!")
 
-            if epoch % 20 == 0 and epoch != 0:
+            if epoch % 10 == 0 and epoch != 0:
                 # Validation Set
                 validation_start_time = time.time()
                 self.validation_for_A_dir()
@@ -357,9 +359,12 @@ class CycleGANTraining(object):
                                                                 ap=ap,
                                                                 fs=sampling_rate,
                                                                 frame_period=frame_period)
-            librosa.output.write_wav(path=os.path.join(output_A_dir, os.path.basename(file)),
-                                     y=wav_transformed,
-                                     sr=sampling_rate)
+            # librosa.output.write_wav(path=os.path.join(output_A_dir, os.path.basename(file)),
+            #                          y=wav_transformed,
+            #                          sr=sampling_rate)
+            sf.write(file=os.path.join(output_A_dir, os.path.basename(file)),
+            data=wav_transformed,
+            samplerate=sampling_rate)
 
     def validation_for_B_dir(self):
         num_mcep = 36
@@ -410,9 +415,12 @@ class CycleGANTraining(object):
                                                                 ap=ap,
                                                                 fs=sampling_rate,
                                                                 frame_period=frame_period)
-            librosa.output.write_wav(path=os.path.join(output_B_dir, os.path.basename(file)),
-                                     y=wav_transformed,
-                                     sr=sampling_rate)
+            # librosa.output.write_wav(path=os.path.join(output_B_dir, os.path.basename(file)),
+            #                          y=wav_transformed,
+            #                          sr=sampling_rate)
+            sf.write(file=os.path.join(output_B_dir, os.path.basename(file)),
+            data=wav_transformed,
+            samplerate=sampling_rate)
 
     def savePickle(self, variable, fileName):
         with open(fileName, 'wb') as f:
@@ -469,8 +477,8 @@ if __name__ == '__main__':
     coded_sps_A_norm = './cache/coded_sps_A_norm.pickle'
     coded_sps_B_norm = './cache/coded_sps_B_norm.pickle'
     model_checkpoint = './model_checkpoint/'
-    # resume_training_at = './model_checkpoint/_CycleGAN_CheckPoint'
-    resume_training_at = None
+    resume_training_at = './model_checkpoint/_CycleGAN_CheckPoint'
+    # resume_training_at = None
 
     validation_A_dir_default = './data/clean/'
     output_A_dir_default = './converted_sound/clean'
