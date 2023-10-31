@@ -2,3 +2,12 @@ Epoch: 20 Generator Loss: 10.5274 Discriminator Loss: 0.17448115348815918, Time:
 
 
 Saving model Checkpoint  ......
+Epoch: 0 Generator Loss: 24.8089 Discriminator Loss: 0.03713788837194443, Time: 599.88
+
+
+Saving model Checkpoint  ......
+Epoch: 0 Generator Loss: 22.7368 Discriminator Loss: 0.041674256324768066, Time: 612.11
+
+
+Saving model Checkpoint  ......
+Time taken for validation Set: 358.2647979259491
