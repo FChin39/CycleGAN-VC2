@@ -4,7 +4,7 @@
 #SBATCH --nodes=1 
 #SBATCH --gres=gpu:1
 #SBATCH --mem=30G
-#SBATCH --c 10
+#SBATCH --cpus-per-task=10
 
 cd ../
 python train.py
