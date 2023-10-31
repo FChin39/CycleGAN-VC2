@@ -14,7 +14,7 @@ import pickle
 import preprocess
 from trainingDataset import trainingDataset
 from model_tf import Generator, Discriminator
-from tqdm import tqdm
+from tqdm import tqdm   
 
 os.environ["CUDA_VISIBLE_DEVICES"] = "3"
 
@@ -133,6 +133,8 @@ class CycleGANTraining(object):
 
             # Preparing Dataset
             n_samples = len(self.dataset_A)
+
+            # print(n_samples)
 
             dataset = trainingDataset(datasetA=self.dataset_A,
                                       datasetB=self.dataset_B,
@@ -278,7 +280,7 @@ class CycleGANTraining(object):
             #             print("Epoch: {} Generator Loss: {:.4f} Discriminator Loss: {}, Time: {:.2f}\n\n".format(
             #                 epoch, generator_loss.item(), d_loss.item(), end_time - start_time_epoch))
 
-            if epoch % 2000 == 0 and epoch != 0:
+            if epoch % 20 == 0 and epoch != 0:
                 end_time = time.time()
                 store_to_file = "Epoch: {} Generator Loss: {:.4f} Discriminator Loss: {}, Time: {:.2f}\n\n".format(
                     epoch, generator_loss.item(), d_loss.item(), end_time - start_time_epoch)
@@ -294,7 +296,7 @@ class CycleGANTraining(object):
                     self.modelCheckpoint + '_CycleGAN_CheckPoint'))
                 print("Model Saved!")
 
-            if epoch % 2000 == 0 and epoch != 0:
+            if epoch % 20 == 0 and epoch != 0:
                 # Validation Set
                 validation_start_time = time.time()
                 self.validation_for_A_dir()
