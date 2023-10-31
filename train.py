@@ -312,7 +312,7 @@ class CycleGANTraining(object):
                 self.store_to_file(store_to_file)
                 print("Time taken for validation Set: {}".format(
                     validation_end_time - validation_start_time))
-                sys.exit(1)
+                # sys.exit(1)
                 
 
     def validation_for_A_dir(self):
@@ -482,8 +482,8 @@ if __name__ == '__main__':
     coded_sps_A_norm = './cache/coded_sps_A_norm.pickle'
     coded_sps_B_norm = './cache/coded_sps_B_norm.pickle'
     model_checkpoint = './model_checkpoint/'
-    # resume_training_at = './model_checkpoint/_CycleGAN_CheckPoint'
-    resume_training_at = None
+    resume_training_at = './model_checkpoint/_CycleGAN_CheckPoint_1e'
+    # resume_training_at = None
 
     validation_A_dir_default = './data/clean/'
     output_A_dir_default = './converted_sound/clean'
